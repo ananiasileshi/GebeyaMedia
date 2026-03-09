@@ -90,21 +90,74 @@
   <main id="main" class="page">
     <div class="container">
       <h1>CONTACT</h1>
-      <p>Start a conversation. Next we’ll build the multi-step inquiry form (project type → budget → timeline → details), with validation and a cinematic completion screen.</p>
+      <p class="lead" data-reveal>Start a conversation. Tell us what you're building and we’ll respond fast with next steps.</p>
 
-      <div style="margin-top: var(--space-2xl); max-width: 720px;">
-        <div class="meta-card">
-          <div class="mono" style="color: var(--text-2); margin-bottom: 10px;">QUICK MESSAGE</div>
-          <form>
-            <div style="display:grid; gap: 12px;">
-              <input placeholder="Your name" aria-label="Your name" style="padding: 14px 16px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,.12); background: rgba(10,10,10,.35); color: var(--text-0);" />
-              <input placeholder="Email" aria-label="Email" type="email" style="padding: 14px 16px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,.12); background: rgba(10,10,10,.35); color: var(--text-0);" />
-              <textarea placeholder="Tell us about your project" aria-label="Project details" rows="5" style="padding: 14px 16px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,.12); background: rgba(10,10,10,.35); color: var(--text-0); resize: vertical;"></textarea>
-              <button class="btn btn--primary" type="button" data-cursor-hover="SEND">LET'S GO →</button>
+      <section class="contact" aria-label="Contact details" data-reveal>
+        <div class="contact-grid">
+          <div class="contact-panel">
+            <div class="mono" style="color: var(--text-2); margin-bottom: 10px;">CONTACT</div>
+            <h2 class="contact-title">Let’s build something cinematic.</h2>
+            <p class="contact-sub">Share a brief, a timeline, and what success looks like. We’ll come back with an approach and a quote range.</p>
+
+            <div class="contact-methods" aria-label="Ways to reach us">
+              <a class="contact-method" href="mailto:info@gebeyamedia.com" data-cursor-hover="EMAIL">
+                <span class="contact-method__k mono">EMAIL</span>
+                <span class="contact-method__v">info@gebeyamedia.com</span>
+              </a>
+              <a class="contact-method" href="#" data-cursor-hover="CALL">
+                <span class="contact-method__k mono">PHONE</span>
+                <span class="contact-method__v">+251 XXX XXX XXX</span>
+              </a>
+              <div class="contact-method" aria-label="Location">
+                <span class="contact-method__k mono">LOCATION</span>
+                <span class="contact-method__v">Addis Ababa, Ethiopia</span>
+              </div>
             </div>
-          </form>
+
+            <div class="contact-social">
+              <div class="mono" style="color: var(--text-2); margin-bottom: 10px;">SOCIAL</div>
+              <div class="contact-social__links">
+                <a href="#" target="_blank" rel="noreferrer" data-cursor-hover="IG">Instagram</a>
+                <a href="#" target="_blank" rel="noreferrer" data-cursor-hover="YT">YouTube</a>
+                <a href="#" target="_blank" rel="noreferrer" data-cursor-hover="LI">LinkedIn</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-card" aria-label="Quick message">
+            <div class="mono" style="color: var(--text-2); margin-bottom: 10px;">QUICK MESSAGE</div>
+            <form class="form" action="#" method="post">
+              <div class="field">
+                <label for="c-name" class="mono">NAME</label>
+                <input id="c-name" name="name" type="text" placeholder="Your name" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="c-email" class="mono">EMAIL</label>
+                <input id="c-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required />
+              </div>
+              <div class="field">
+                <label for="c-type" class="mono">PROJECT TYPE</label>
+                <select id="c-type" name="type" required>
+                  <option value="" selected disabled>Select one</option>
+                  <option value="commercial">Commercial</option>
+                  <option value="animation">Animation</option>
+                  <option value="documentary">Documentary</option>
+                  <option value="branding">Branding</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="c-message" class="mono">DETAILS</label>
+                <textarea id="c-message" name="message" rows="6" placeholder="What are we making? What's the timeline?" required></textarea>
+              </div>
+              <div class="form-actions">
+                <button class="btn btn--primary" type="submit" data-cursor-hover="SEND" data-magnetic>LET'S GO →</button>
+                <a class="btn btn--outline" href="work.html" data-cursor-hover="WORK" data-magnetic>VIEW WORK →</a>
+              </div>
+              <div class="form-note mono">We typically reply within 1–2 business days.</div>
+            </form>
+          </div>
         </div>
-      </div>
+      </section>
 
       <div class="bigbtn">
         <a class="btn btn--outline" href="work.html" data-cursor-hover="WORK">VIEW OUR WORK →</a>
