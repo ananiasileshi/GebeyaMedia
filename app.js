@@ -461,19 +461,32 @@
     if (gRoot) {
       gRoot.innerHTML = '';
       const gallery = Array.isArray(p.gallery) ? p.gallery : [];
-      gallery.forEach((src) => {
+      const items = gallery.length > 0 ? gallery : ['ph-1', 'ph-2', 'ph-3', 'ph-4'];
+
+      items.forEach((src, idx) => {
         const item = document.createElement('div');
-        item.className = 'gallery-item';
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = '';
-        img.loading = 'lazy';
-        img.decoding = 'async';
-        item.appendChild(img);
+        const isPh = String(src).startsWith('ph-');
+        item.className = isPh ? 'gallery-item gallery-item--ph' : 'gallery-item';
+
+        if (isPh) {
+          const ph = document.createElement('div');
+          ph.className = 'gallery-ph';
+          ph.setAttribute('data-ph', String(idx + 1));
+          item.appendChild(ph);
+        } else {
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = '';
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          item.appendChild(img);
+        }
+
         item.setAttribute('data-reveal', '');
         gRoot.appendChild(item);
       });
-      gRoot.closest('.case-section')?.classList.toggle('is-empty', gallery.length === 0);
+
+      gRoot.closest('.case-section')?.classList.toggle('is-empty', false);
     }
 
     document.title = `Gebeya Media — ${p.title}`;

@@ -1523,6 +1523,26 @@ html[data-theme="light"] .gallery-item{
   display:block;
 }
 
+.gallery-item--ph{
+  min-height: 220px;
+}
+
+.gallery-ph{
+  height: 100%;
+  min-height: 220px;
+  background:
+    radial-gradient(700px 320px at 20% 20%, rgba(var(--accent-rgb),.22), transparent 60%),
+    radial-gradient(700px 320px at 80% 70%, rgba(var(--accent-2-rgb),.18), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.12));
+}
+
+html[data-theme="light"] .gallery-ph{
+  background:
+    radial-gradient(700px 320px at 20% 20%, rgba(var(--accent-rgb),.16), transparent 60%),
+    radial-gradient(700px 320px at 80% 70%, rgba(var(--accent-2-rgb),.14), transparent 60%),
+    linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,.04));
+}
+
 .contact-cta{
   margin-top: var(--space-3xl);
   border-radius: var(--radius-xl);
