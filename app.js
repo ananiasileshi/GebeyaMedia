@@ -949,6 +949,8 @@
     const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) return;
 
+    if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return;
+
     const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
     if (!ctx) return;
 
@@ -968,6 +970,11 @@
     let raf = 0;
     let running = true;
 
+    let mx = 0;
+    let my = 0;
+    let mxf = 0;
+    let myf = 0;
+
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
       dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
@@ -977,14 +984,48 @@
       canvas.height = h;
     };
 
+    const onMove = (e) => {
+      const x = (e.clientX / Math.max(1, window.innerWidth)) * 2 - 1;
+      const y = (e.clientY / Math.max(1, window.innerHeight)) * 2 - 1;
+      mx = clamp(x, -1, 1);
+      my = clamp(y, -1, 1);
+    };
+
     const blobs = [
       { r: 0.42, sp: 0.00014, ph: 0.0, col: 'teal' },
       { r: 0.36, sp: 0.00011, ph: 1.7, col: 'orange' },
       { r: 0.30, sp: 0.00009, ph: 3.2, col: 'teal' }
     ];
 
+    const noise = document.createElement('canvas');
+    const nctx = noise.getContext('2d');
+    let nw = 0;
+    let nh = 0;
+
+    const refreshNoise = () => {
+      if (!nctx) return;
+      nw = Math.max(1, Math.floor(w / 2));
+      nh = Math.max(1, Math.floor(h / 2));
+      noise.width = nw;
+      noise.height = nh;
+
+      const img = nctx.createImageData(nw, nh);
+      const data = img.data;
+      for (let i = 0; i < data.length; i += 4) {
+        const v = (Math.random() * 255) | 0;
+        data[i] = v;
+        data[i + 1] = v;
+        data[i + 2] = v;
+        data[i + 3] = 20;
+      }
+      nctx.putImageData(img, 0, 0);
+    };
+
     const draw = (t) => {
       if (!running) return;
+
+      mxf += (mx - mxf) * 0.06;
+      myf += (my - myf) * 0.06;
 
       ctx.clearRect(0, 0, w, h);
       ctx.globalCompositeOperation = 'lighter';
@@ -992,10 +1033,14 @@
       const [tr, tg, tb] = teal();
       const [or, og, ob] = orange();
 
+      const drift = Math.max(w, h) * 0.035;
+      const dx = mxf * drift;
+      const dy = myf * drift;
+
       blobs.forEach((b, i) => {
         const tt = t * b.sp;
-        const x = (0.18 + 0.64 * (0.5 + 0.5 * Math.sin(tt + b.ph + i))) * w;
-        const y = (0.18 + 0.64 * (0.5 + 0.5 * Math.cos(tt * 1.12 + b.ph))) * h;
+        const x = (0.18 + 0.64 * (0.5 + 0.5 * Math.sin(tt + b.ph + i))) * w + dx * (0.6 + i * 0.15);
+        const y = (0.18 + 0.64 * (0.5 + 0.5 * Math.cos(tt * 1.12 + b.ph))) * h + dy * (0.6 + i * 0.15);
         const rr = Math.max(w, h) * b.r;
 
         const isTeal = b.col === 'teal';
@@ -1015,6 +1060,16 @@
       });
 
       ctx.globalCompositeOperation = 'source-over';
+
+      if (nctx) {
+        if ((t | 0) % 6 === 0) refreshNoise();
+        ctx.save();
+        ctx.globalAlpha = 0.10;
+        ctx.globalCompositeOperation = 'overlay';
+        ctx.drawImage(noise, 0, 0, w, h);
+        ctx.restore();
+      }
+
       raf = window.requestAnimationFrame(draw);
     };
 
@@ -1028,9 +1083,11 @@
     };
 
     resize();
+    refreshNoise();
     const ro = new ResizeObserver(() => resize());
     ro.observe(canvas);
     window.addEventListener('resize', resize, { passive: true });
+    window.addEventListener('mousemove', onMove, { passive: true });
     document.addEventListener('visibilitychange', onVis);
     raf = window.requestAnimationFrame(draw);
   }
