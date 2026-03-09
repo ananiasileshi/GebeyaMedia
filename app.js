@@ -18,7 +18,26 @@
       challenge: 'Create an authoritative campaign film with high recall and premium brand presence.',
       idea: 'Anchor the narrative around a single bold promise, then build emotional momentum with cinematic pacing.',
       craft: 'Disciplined lighting, tight edit rhythm, and a minimal color system that lets the message lead.',
-      results: 'Stronger brand recall and a cohesive set of cutdowns optimized for social and broadcast.'
+      results: 'Stronger brand recall and a cohesive set of cutdowns optimized for social and broadcast.',
+      overview: 'A video-first campaign designed to feel premium on day one — from the first frame to the final cutdown.',
+      team: [
+        { role: 'Direction', name: 'Gebeya Media Studio' },
+        { role: 'Cinematography', name: 'In-house' },
+        { role: 'Edit', name: 'In-house' },
+        { role: 'Sound', name: 'Partner' }
+      ],
+      timeline: [
+        { label: 'Discovery', value: '2 days' },
+        { label: 'Pre-production', value: '5 days' },
+        { label: 'Shoot', value: '1 day' },
+        { label: 'Post', value: '7 days' }
+      ],
+      metrics: [
+        { label: 'Deliverables', value: '1 hero + 6 cutdowns' },
+        { label: 'Turnaround', value: '15 days' },
+        { label: 'Platforms', value: 'IG / TikTok / YouTube' }
+      ],
+      gallery: []
     },
     {
       slug: 'project-two',
@@ -32,7 +51,23 @@
       challenge: 'Turn complexity into clarity without losing energy and style.',
       idea: 'Use bold type and simple geometric language that feels editorial and confident.',
       craft: 'Snappy transitions, clean typography, and an accent-first visual system.',
-      results: 'Higher completion rates on social and improved understanding in customer feedback.'
+      results: 'Higher completion rates on social and improved understanding in customer feedback.',
+      overview: 'An editorial approach to motion that balances clarity and personality.',
+      team: [
+        { role: 'Motion Lead', name: 'Gebeya Media Studio' },
+        { role: 'Design', name: 'Client Team' }
+      ],
+      timeline: [
+        { label: 'Audit', value: '1 week' },
+        { label: 'Build', value: '2 weeks' },
+        { label: 'Rollout', value: '1 week' }
+      ],
+      metrics: [
+        { label: 'Templates', value: '18' },
+        { label: 'Components', value: '36+' },
+        { label: 'Easings', value: '6' }
+      ],
+      gallery: []
     },
     {
       slug: 'project-three',
@@ -46,7 +81,24 @@
       challenge: 'Capture authentic stories while maintaining production discipline.',
       idea: 'Let the people lead the film — visuals support truth, not spectacle.',
       craft: 'Interview-driven narrative, careful sound, and a restrained grade for honesty.',
-      results: 'A timeless film that builds trust and positions the brand as human-first.'
+      results: 'A timeless film that builds trust and positions the brand as human-first.',
+      overview: 'A documentary approach that balances dignity and presence.',
+      team: [
+        { role: 'Director', name: 'Gebeya Media Studio' },
+        { role: 'Producer', name: 'Partner' },
+        { role: 'Editor', name: 'In-house' }
+      ],
+      timeline: [
+        { label: 'Research', value: '2 weeks' },
+        { label: 'Field', value: '4 days' },
+        { label: 'Post', value: '3 weeks' }
+      ],
+      metrics: [
+        { label: 'Runtime', value: '12 minutes' },
+        { label: 'Locations', value: '2' },
+        { label: 'Languages', value: '2' }
+      ],
+      gallery: []
     },
     {
       slug: 'project-four',
@@ -60,7 +112,23 @@
       challenge: 'Build a visual system that scales across digital, print, and campaigns.',
       idea: 'A strong wordmark + modular grid rules that keep everything consistent.',
       craft: 'A disciplined palette, typography hierarchy, and reusable motion templates.',
-      results: 'A cohesive system adopted across all touchpoints with faster production speed.'
+      results: 'A cohesive system adopted across all touchpoints with faster production speed.',
+      overview: 'A brand system that balances clarity and expression — designed for real production speed.',
+      team: [
+        { role: 'Brand Lead', name: 'Gebeya Media Studio' },
+        { role: 'Strategy', name: 'In-house' }
+      ],
+      timeline: [
+        { label: 'Discovery', value: '1 week' },
+        { label: 'Design', value: '2 weeks' },
+        { label: 'Guidelines', value: '1 week' }
+      ],
+      metrics: [
+        { label: 'Pages', value: '36' },
+        { label: 'Assets', value: '60+' },
+        { label: 'Lockups', value: '12' }
+      ],
+      gallery: []
     }
   ];
 
@@ -344,6 +412,69 @@
     set('[data-project-idea]', p.idea);
     set('[data-project-craft]', p.craft);
     set('[data-project-results]', p.results);
+
+    set('[data-project-overview]', p.overview || '');
+
+    const teamRoot = qs('[data-project-team]');
+    if (teamRoot) {
+      teamRoot.innerHTML = '';
+      const team = Array.isArray(p.team) ? p.team : [];
+      team.forEach((m) => {
+        const row = document.createElement('div');
+        row.className = 'credit-row';
+        row.innerHTML = `<div class="credit-k mono">${m.role || ''}</div><div class="credit-v">${m.name || ''}</div>`;
+        row.setAttribute('data-reveal', '');
+        teamRoot.appendChild(row);
+      });
+      teamRoot.closest('.case-section')?.classList.toggle('is-empty', team.length === 0);
+    }
+
+    const tlRoot = qs('[data-project-timeline]');
+    if (tlRoot) {
+      tlRoot.innerHTML = '';
+      const timeline = Array.isArray(p.timeline) ? p.timeline : [];
+      timeline.forEach((s) => {
+        const row = document.createElement('div');
+        row.className = 'timeline-row';
+        row.innerHTML = `<div class="timeline-k mono">${s.label || ''}</div><div class="timeline-v">${s.value || ''}</div>`;
+        row.setAttribute('data-reveal', '');
+        tlRoot.appendChild(row);
+      });
+      tlRoot.closest('.case-section')?.classList.toggle('is-empty', timeline.length === 0);
+    }
+
+    const mRoot = qs('[data-project-metrics]');
+    if (mRoot) {
+      mRoot.innerHTML = '';
+      const metrics = Array.isArray(p.metrics) ? p.metrics : [];
+      metrics.forEach((m) => {
+        const card = document.createElement('div');
+        card.className = 'metric';
+        card.innerHTML = `<div class="metric-k mono">${m.label || ''}</div><div class="metric-v">${m.value || ''}</div>`;
+        card.setAttribute('data-reveal', '');
+        mRoot.appendChild(card);
+      });
+      mRoot.closest('.case-section')?.classList.toggle('is-empty', metrics.length === 0);
+    }
+
+    const gRoot = qs('[data-project-gallery]');
+    if (gRoot) {
+      gRoot.innerHTML = '';
+      const gallery = Array.isArray(p.gallery) ? p.gallery : [];
+      gallery.forEach((src) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = '';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        item.appendChild(img);
+        item.setAttribute('data-reveal', '');
+        gRoot.appendChild(item);
+      });
+      gRoot.closest('.case-section')?.classList.toggle('is-empty', gallery.length === 0);
+    }
 
     document.title = `Gebeya Media — ${p.title}`;
   }
