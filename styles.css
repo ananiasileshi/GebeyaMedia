@@ -217,14 +217,16 @@ html[data-theme="light"] .nav a{
 }
 
 .brand__img{
-  height: 34px;
+  height: 80px;
   width: auto;
   display:block;
+  margin-top: 20px;
   transform: translateZ(0);
 }
 
 .header.is-solid .brand__img{
-  height: 28px;
+  height: 50px;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 640px){
@@ -494,7 +496,7 @@ html[data-theme="light"] .footerline{
   align-items:center;
   padding-top: 80px;
 }
-@media (max-width: 640px){
+@media (max-width: 0px){
   .hero{ padding-top: 64px; }
 }
 
