@@ -266,6 +266,17 @@
 
     candidates.forEach((el) => el.classList.add('reveal'));
 
+    const forceIn = () => {
+      candidates.forEach((el) => {
+        if (!el.classList.contains('is-in')) el.classList.add('is-in');
+      });
+    };
+
+    if (typeof IntersectionObserver === 'undefined') {
+      forceIn();
+      return;
+    }
+
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
@@ -279,6 +290,11 @@
     }, { threshold: 0.18 });
 
     candidates.forEach((el) => io.observe(el));
+
+    window.setTimeout(() => {
+      forceIn();
+      try { io.disconnect(); } catch { }
+    }, 2200);
   }
 
   function initMagneticButtons() {
@@ -1173,27 +1189,35 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    initTheme();
-    initPreloader();
-    initHeader();
-    initProgress();
-    initOverlayMenu();
-    initCurtainTransitions();
-    initHeroParallax();
-    initHeroCanvas();
-    initStatsViz();
-    initAccordion();
-    initShowreel();
-    initScrollHint();
-    initCursor();
-    initMarquee();
-    initWorkFilters();
-    initPreviewVideos();
-    initProjectPage();
-    initSharedElementOpenTransition();
-    initBlogFilters();
-    initPostPage();
-    initReveals();
-    initMagneticButtons();
+    const safe = (name, fn) => {
+      try {
+        fn();
+      } catch (err) {
+        console.error(`[GM] init failed: ${name}`, err);
+      }
+    };
+
+    safe('theme', initTheme);
+    safe('preloader', initPreloader);
+    safe('header', initHeader);
+    safe('progress', initProgress);
+    safe('overlayMenu', initOverlayMenu);
+    safe('curtain', initCurtainTransitions);
+    safe('heroParallax', initHeroParallax);
+    safe('heroCanvas', initHeroCanvas);
+    safe('statsViz', initStatsViz);
+    safe('accordion', initAccordion);
+    safe('showreel', initShowreel);
+    safe('scrollHint', initScrollHint);
+    safe('cursor', initCursor);
+    safe('marquee', initMarquee);
+    safe('workFilters', initWorkFilters);
+    safe('previewVideos', initPreviewVideos);
+    safe('projectPage', initProjectPage);
+    safe('sharedTransition', initSharedElementOpenTransition);
+    safe('blogFilters', initBlogFilters);
+    safe('postPage', initPostPage);
+    safe('reveals', initReveals);
+    safe('magnetic', initMagneticButtons);
   });
 })();
