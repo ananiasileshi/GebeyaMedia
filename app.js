@@ -1019,6 +1019,86 @@
     raf = window.requestAnimationFrame(draw);
   }
 
+  function initStatsViz() {
+    const root = qs('.statsviz');
+    if (!root) return;
+
+    const reduced = prefersReducedMotion;
+    const kpies = qsa('[data-count-to]', root);
+    const chart = qs('[data-chart]', root);
+    const line = chart ? qs('.chart__line', chart) : null;
+    const glow = chart ? qs('.chart__glow', chart) : null;
+
+    const runCounters = () => {
+      kpies.forEach((el) => {
+        if (el.getAttribute('data-counted') === '1') return;
+        el.setAttribute('data-counted', '1');
+
+        const to = Number(el.getAttribute('data-count-to') || '0');
+        const suffix = el.getAttribute('data-count-suffix') || '';
+        if (!Number.isFinite(to)) return;
+
+        if (reduced) {
+          el.textContent = String(to) + suffix;
+          return;
+        }
+
+        const dur = 850;
+        const start = performance.now();
+        const from = 0;
+
+        const step = (t) => {
+          const p = clamp((t - start) / dur, 0, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          const v = Math.round(from + (to - from) * eased);
+          el.textContent = String(v) + suffix;
+          if (p < 1) window.requestAnimationFrame(step);
+        };
+        window.requestAnimationFrame(step);
+      });
+    };
+
+    const runChart = () => {
+      if (!line) return;
+      if (line.getAttribute('data-drawn') === '1') return;
+      line.setAttribute('data-drawn', '1');
+      if (glow) glow.setAttribute('data-drawn', '1');
+
+      if (reduced) return;
+
+      const paths = [line, glow].filter(Boolean);
+      paths.forEach((p) => {
+        const len = p.getTotalLength();
+        p.style.strokeDasharray = `${len}`;
+        p.style.strokeDashoffset = `${len}`;
+      });
+
+      const dur = 980;
+      const start = performance.now();
+      const step = (t) => {
+        const p = clamp((t - start) / dur, 0, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const off = 1 - eased;
+        paths.forEach((pth) => {
+          const len = pth.getTotalLength();
+          pth.style.strokeDashoffset = `${len * off}`;
+        });
+        if (p < 1) window.requestAnimationFrame(step);
+      };
+      window.requestAnimationFrame(step);
+    };
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        runCounters();
+        runChart();
+        io.disconnect();
+      });
+    }, { threshold: 0.22 });
+    io.observe(root);
+  }
+
   // Custom cursor (desktop only)
   function initCursor() {
     const cursor = qs('[data-cursor]');
@@ -1101,6 +1181,7 @@
     initCurtainTransitions();
     initHeroParallax();
     initHeroCanvas();
+    initStatsViz();
     initAccordion();
     initShowreel();
     initScrollHint();
