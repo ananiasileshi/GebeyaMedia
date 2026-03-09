@@ -725,14 +725,45 @@ html[data-theme="light"] .hero__shade{
   width: 120px;
   height: 44px;
   border-radius: var(--radius-md);
-  background: rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.08);
   display:grid;
   place-items:center;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.06);
+  color: var(--text-1);
+  font-family: "Cabinet Grotesk", ui-sans-serif, system-ui;
+  letter-spacing: .08em;
+  font-size: 12px;
   filter: grayscale(1);
-  opacity:.85;
+  opacity:.7;
+  transform: translateZ(0);
   transition: transform .25s var(--ease-out), filter .25s var(--ease-out), opacity .25s var(--ease-out);
 }
+
+.logo img{
+  max-width: 88%;
+  max-height: 70%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display:block;
+  filter: brightness(0) invert(1);
+  opacity: .95;
+}
+
+html[data-theme="light"] .logo{
+  border: 1px solid rgba(0,0,0,.10);
+  background: rgba(0,0,0,.04);
+}
+
+html[data-theme="light"] .logo img{
+  filter: none;
+}
+
+@media (max-width: 640px){
+  .track{ gap: 44px; }
+  .logo{ width: 104px; height: 40px; }
+}
+
 .logo:hover{ filter: grayscale(0); transform: scale(1.08); opacity: 1; }
 
 @media (prefers-reduced-motion: no-preference){
