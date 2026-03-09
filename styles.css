@@ -927,6 +927,93 @@ html[data-theme="light"] .cardlet{
   gap: clamp(18px, 2.4vw, 28px);
 }
 
+.statsviz__grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 18px);
+}
+
+@media (max-width: 900px){
+  .statsviz__grid{ grid-template-columns: 1fr; }
+}
+
+.kpi{
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(17,17,17,.55);
+  padding: clamp(16px, 2.2vw, 24px);
+}
+
+html[data-theme="light"] .kpi{
+  border: 1px solid rgba(0,0,0,.10);
+  background: rgba(255,255,255,.78);
+}
+
+.kpi__value{
+  font-family: "Clash Display", ui-sans-serif, system-ui;
+  font-weight: 600;
+  font-size: clamp(44px, 6vw, 86px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--text-0);
+}
+
+.kpi__label{
+  margin-top: 10px;
+  color: var(--text-2);
+}
+
+.chart{
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(17,17,17,.35);
+  padding: clamp(16px, 2.2vw, 24px);
+  overflow:hidden;
+}
+
+html[data-theme="light"] .chart{
+  border: 1px solid rgba(0,0,0,.10);
+  background: rgba(255,255,255,.70);
+}
+
+.chart__svg{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+.chart__grid{
+  fill:none;
+  stroke: rgba(255,255,255,.08);
+  stroke-width: 2;
+}
+
+html[data-theme="light"] .chart__grid{
+  stroke: rgba(0,0,0,.08);
+}
+
+.chart__line{
+  fill:none;
+  stroke: var(--accent-2);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chart__glow{
+  fill:none;
+  stroke: rgba(var(--accent-rgb),.45);
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: blur(10px);
+  opacity: .65;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .chart__glow{ display:none; }
+}
+
 .sectionhead h2{
   margin: 14px 0 0;
   font-size: clamp(36px, 5vw, 96px);
