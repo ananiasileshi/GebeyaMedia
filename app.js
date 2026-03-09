@@ -343,12 +343,37 @@
     const pills = qsa('[data-filter]');
     const cards = qsa('[data-preview][data-category]', grid);
 
+    const HIDE_MS = 260;
+
+    const stopPreview = (card) => {
+      const v = qs('[data-preview-video]', card);
+      if (!v) return;
+      try {
+        v.pause();
+        v.currentTime = 0;
+      } catch { }
+      card.removeAttribute('data-preview-armed');
+    };
+
     const apply = (key) => {
       pills.forEach((p) => p.classList.toggle('is-active', p.getAttribute('data-filter') === key));
       cards.forEach((c) => {
         const cat = c.getAttribute('data-category');
         const show = key === 'all' || key === cat;
-        c.style.display = show ? '' : 'none';
+
+        if (show) {
+          c.style.display = '';
+          c.classList.remove('is-filtered-out');
+          c.setAttribute('aria-hidden', 'false');
+          return;
+        }
+
+        stopPreview(c);
+        c.classList.add('is-filtered-out');
+        c.setAttribute('aria-hidden', 'true');
+        window.setTimeout(() => {
+          if (c.classList.contains('is-filtered-out')) c.style.display = 'none';
+        }, HIDE_MS);
       });
     };
 
