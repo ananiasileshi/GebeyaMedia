@@ -831,7 +831,7 @@
     const raf = () => {
       cx += (tx - cx) * 0.08;
       cy += (ty - cy) * 0.08;
-      heroVideo.style.transform = `translate3d(${cx}px, ${cy}px, 0) scale(1.08)`;
+      video.style.transform = `translate3d(${cx}px, ${cy}px, 0) scale(1.08)`;
       requestAnimationFrame(raf);
     };
 
