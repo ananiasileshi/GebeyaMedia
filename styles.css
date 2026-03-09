@@ -217,22 +217,23 @@ html[data-theme="light"] .nav a{
 }
 
 .brand__img{
-  height: 28px;
+  height: 34px;
   width: auto;
   display:block;
   transform: translateZ(0);
 }
 
 .header.is-solid .brand__img{
-  height: 22px;
+  height: 28px;
 }
 
 @media (max-width: 640px){
-  .brand__img{ height: 24px; }
-  .header.is-solid .brand__img{ height: 20px; }
+  .brand__img{ height: 28px; }
+  .header.is-solid .brand__img{ height: 24px; }
 }
 
-html[data-theme="light"] .header .brand{
+html[data-theme="light"] .header .brand,
+html[data-theme="light"] .overlay__top .brand{
   padding: 8px 10px;
   border-radius: var(--radius-full);
   background: rgba(10,10,10,.92);
