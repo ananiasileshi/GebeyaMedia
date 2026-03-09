@@ -668,8 +668,9 @@
 
   // Hero parallax (subtle)
   function initHeroParallax() {
-    const heroVideo = qs('[data-hero-video]');
-    if (!heroVideo) return;
+    const hero = qs('.hero');
+    const video = qs('[data-hero-video]');
+    if (!hero || !video) return;
     if (prefersReducedMotion) return;
     if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return;
 
@@ -781,6 +782,99 @@
     onScroll();
   }
 
+  function initHeroCanvas() {
+    const canvas = qs('[data-hero-canvas]');
+    if (!canvas) return;
+
+    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
+
+    const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
+    if (!ctx) return;
+
+    const getRgb = (name, fallback) => {
+      const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      const parts = raw.split(',').map((v) => parseFloat(v.trim())).filter((n) => Number.isFinite(n));
+      if (parts.length === 3) return parts;
+      return fallback;
+    };
+
+    const teal = () => getRgb('--accent-rgb', [0, 187, 150]);
+    const orange = () => getRgb('--accent-2-rgb', [236, 94, 42]);
+
+    let w = 0;
+    let h = 0;
+    let dpr = 1;
+    let raf = 0;
+    let running = true;
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+      w = Math.max(1, Math.floor(rect.width * dpr));
+      h = Math.max(1, Math.floor(rect.height * dpr));
+      canvas.width = w;
+      canvas.height = h;
+    };
+
+    const blobs = [
+      { r: 0.42, sp: 0.00014, ph: 0.0, col: 'teal' },
+      { r: 0.36, sp: 0.00011, ph: 1.7, col: 'orange' },
+      { r: 0.30, sp: 0.00009, ph: 3.2, col: 'teal' }
+    ];
+
+    const draw = (t) => {
+      if (!running) return;
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.globalCompositeOperation = 'lighter';
+
+      const [tr, tg, tb] = teal();
+      const [or, og, ob] = orange();
+
+      blobs.forEach((b, i) => {
+        const tt = t * b.sp;
+        const x = (0.18 + 0.64 * (0.5 + 0.5 * Math.sin(tt + b.ph + i))) * w;
+        const y = (0.18 + 0.64 * (0.5 + 0.5 * Math.cos(tt * 1.12 + b.ph))) * h;
+        const rr = Math.max(w, h) * b.r;
+
+        const isTeal = b.col === 'teal';
+        const r = isTeal ? tr : or;
+        const g = isTeal ? tg : og;
+        const bl = isTeal ? tb : ob;
+
+        const grad = ctx.createRadialGradient(x, y, 0, x, y, rr);
+        grad.addColorStop(0, `rgba(${r},${g},${bl},0.22)`);
+        grad.addColorStop(0.55, `rgba(${r},${g},${bl},0.10)`);
+        grad.addColorStop(1, `rgba(${r},${g},${bl},0)`);
+
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(x, y, rr, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      ctx.globalCompositeOperation = 'source-over';
+      raf = window.requestAnimationFrame(draw);
+    };
+
+    const onVis = () => {
+      running = !document.hidden;
+      if (running && !raf) raf = window.requestAnimationFrame(draw);
+      if (!running && raf) {
+        window.cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    };
+
+    resize();
+    const ro = new ResizeObserver(() => resize());
+    ro.observe(canvas);
+    window.addEventListener('resize', resize, { passive: true });
+    document.addEventListener('visibilitychange', onVis);
+    raf = window.requestAnimationFrame(draw);
+  }
+
   // Custom cursor (desktop only)
   function initCursor() {
     const cursor = qs('[data-cursor]');
@@ -862,6 +956,7 @@
     initOverlayMenu();
     initCurtainTransitions();
     initHeroParallax();
+    initHeroCanvas();
     initAccordion();
     initShowreel();
     initScrollHint();
