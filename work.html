@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en" class="grain">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gebeya Media — Work</title>
+  <meta name="description" content="Selected projects by Gebeya Media." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="progress" data-progress></div>
+
+  <div class="curtain" data-curtain aria-hidden="true">
+    <div class="curtain__title" data-curtain-title>OUR WORK</div>
+  </div>
+
+  <div class="cursor" data-cursor aria-hidden="true">
+    <div class="cursor__dot" data-cursor-dot></div>
+    <div class="cursor__ring" data-cursor-ring></div>
+  </div>
+
+  <header class="header" data-header>
+    <div class="header__inner">
+      <a class="brand" href="index.html" data-cursor-hover="HOME" aria-label="Gebeya Media home">
+        <span class="brand__mark" aria-hidden="true">G</span>
+        <span class="brand__word">G MEDIA STUDIOS</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html" data-cursor-hover="HOME">Home</a>
+        <a href="work.html" aria-current="page" data-cursor-hover="WORK">Work</a>
+        <a href="about.html" data-cursor-hover="ABOUT">About</a>
+        <a href="blog.html" data-cursor-hover="BLOG">Blog</a>
+        <a href="contact.html" data-cursor-hover="CONTACT">Contact</a>
+      </nav>
+
+      <div class="header__right">
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme" title="Toggle theme">
+          ☾
+        </button>
+        <button class="hamburger" type="button" data-menu-open aria-expanded="false" aria-controls="overlay" aria-label="Open menu">
+          <span class="hamburger__lines" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="overlay" id="overlay" data-overlay aria-hidden="true">
+    <div class="overlay__inner">
+      <div class="overlay__top">
+        <a class="brand" href="index.html" data-cursor-hover="HOME" aria-label="Gebeya Media home">
+          <span class="brand__mark" aria-hidden="true">G</span>
+          <span class="brand__word" style="opacity:1; transform:none;">G MEDIA STUDIOS</span>
+        </a>
+        <button class="overlay__close" type="button" data-menu-close data-cursor-hover="CLOSE">✕ CLOSE</button>
+      </div>
+
+      <div class="overlay__grid">
+        <div class="menu" aria-label="Overlay navigation">
+          <a href="index.html" data-cursor-hover="HOME"><span class="menu__num mono">01</span><span class="menu__label">HOME</span></a>
+          <a href="work.html" data-cursor-hover="WORK"><span class="menu__num mono">02</span><span class="menu__label">OUR WORK</span></a>
+          <a href="about.html" data-cursor-hover="ABOUT"><span class="menu__num mono">03</span><span class="menu__label">ABOUT US</span></a>
+          <a href="blog.html" data-cursor-hover="BLOG"><span class="menu__num mono">04</span><span class="menu__label">BLOG</span></a>
+          <a href="contact.html" data-cursor-hover="CONTACT"><span class="menu__num mono">05</span><span class="menu__label">CONTACT</span></a>
+        </div>
+
+        <div class="overlay__meta">
+          <div class="meta-card">
+            <div class="mono" style="color: var(--text-2); margin-bottom: 10px;">INFO</div>
+            <a href="mailto:info@gebeyamedia.com" data-cursor-hover="EMAIL">info@gebeyamedia.com</a>
+            <a href="#" data-cursor-hover="CALL">+251 XXX XXX XXX</a>
+            <div style="color: var(--text-1); margin-top: 8px;">Addis Ababa, Ethiopia</div>
+          </div>
+          <div class="meta-card">
+            <div class="mono" style="color: var(--text-2); margin-bottom: 10px;">SOCIALS</div>
+            <a href="#" target="_blank" rel="noreferrer" data-cursor-hover="IG">Instagram</a>
+            <a href="#" target="_blank" rel="noreferrer" data-cursor-hover="YT">YouTube</a>
+            <a href="#" target="_blank" rel="noreferrer" data-cursor-hover="LI">LinkedIn</a>
+            <a href="#" target="_blank" rel="noreferrer" data-cursor-hover="TT">TikTok</a>
+            <a href="#" target="_blank" rel="noreferrer" data-cursor-hover="BE">Behance</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footerline mono">© 2025 Gebeya Media. All rights reserved.</div>
+    </div>
+  </div>
+
+  <main id="main" class="page">
+    <div class="container">
+      <h1>OUR WORK</h1>
+      <p data-reveal>Curated case studies across commercials, animation, documentary, and branding. Hover for previews on desktop, tap to preview on mobile.</p>
+
+      <div class="filters" aria-label="Work filters">
+        <button class="pill mono is-active" type="button" data-filter="all" data-cursor-hover="FILTER" data-magnetic data-reveal>ALL</button>
+        <button class="pill mono" type="button" data-filter="commercial" data-cursor-hover="FILTER" data-magnetic data-reveal data-reveal-delay="60">COMMERCIAL</button>
+        <button class="pill mono" type="button" data-filter="animation" data-cursor-hover="FILTER" data-magnetic data-reveal data-reveal-delay="120">ANIMATION</button>
+        <button class="pill mono" type="button" data-filter="documentary" data-cursor-hover="FILTER" data-magnetic data-reveal data-reveal-delay="180">DOCUMENTARY</button>
+        <button class="pill mono" type="button" data-filter="branding" data-cursor-hover="FILTER" data-magnetic data-reveal data-reveal-delay="240">BRANDING</button>
+      </div>
+
+      <section class="worklist" aria-label="Case studies" data-work-grid>
+        <a class="card" href="project.html?slug=project-one" data-preview data-category="commercial" data-cursor-hover="VIEW" aria-label="Project One">
+          <div class="card__media" aria-hidden="true">
+            <div class="poster"></div>
+            <video muted loop playsinline preload="metadata" data-preview-video>
+              <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="card__content">
+            <span class="tag mono">COMMERCIAL</span>
+            <h3>Project One</h3>
+            <div class="meta"><span>Client Name</span><span class="mono" style="letter-spacing:.08em; color: var(--text-2);">2025</span></div>
+            <div class="cta mono">VIEW PROJECT →</div>
+          </div>
+          <div class="card__line" aria-hidden="true"></div>
+        </a>
+
+        <div class="stack">
+          <a class="card" href="project.html?slug=project-two" data-preview data-category="animation" data-cursor-hover="VIEW" aria-label="Project Two" style="min-height: 240px;">
+            <div class="card__media" aria-hidden="true">
+              <div class="poster"></div>
+              <video muted loop playsinline preload="metadata" data-preview-video>
+                <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="card__content">
+              <span class="tag mono">ANIMATION</span>
+              <h3>Project Two</h3>
+              <div class="meta"><span>Client Name</span><span class="mono" style="letter-spacing:.08em; color: var(--text-2);">2024</span></div>
+              <div class="cta mono">VIEW PROJECT →</div>
+            </div>
+            <div class="card__line" aria-hidden="true"></div>
+          </a>
+
+          <a class="card" href="project.html?slug=project-three" data-preview data-category="documentary" data-cursor-hover="VIEW" aria-label="Project Three" style="min-height: 240px;">
+            <div class="card__media" aria-hidden="true">
+              <div class="poster"></div>
+              <video muted loop playsinline preload="metadata" data-preview-video>
+                <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="card__content">
+              <span class="tag mono">DOCUMENTARY</span>
+              <h3>Project Three</h3>
+              <div class="meta"><span>Client Name</span><span class="mono" style="letter-spacing:.08em; color: var(--text-2);">2023</span></div>
+              <div class="cta mono">VIEW PROJECT →</div>
+            </div>
+            <div class="card__line" aria-hidden="true"></div>
+          </a>
+        </div>
+
+        <a class="card" href="project.html?slug=project-four" data-preview data-category="branding" data-cursor-hover="VIEW" aria-label="Project Four" style="grid-column: 1 / -1; min-height: 320px;">
+          <div class="card__media" aria-hidden="true">
+            <div class="poster"></div>
+            <video muted loop playsinline preload="metadata" data-preview-video>
+              <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="card__content">
+            <span class="tag mono">BRANDING</span>
+            <h3>Project Four</h3>
+            <div class="meta"><span>Client Name</span><span class="mono" style="letter-spacing:.08em; color: var(--text-2);">2022</span></div>
+            <div class="cta mono">VIEW PROJECT →</div>
+          </div>
+          <div class="card__line" aria-hidden="true"></div>
+        </a>
+      </section>
+
+      <div class="bigbtn">
+        <a class="btn btn--outline" href="contact.html" data-cursor-hover="CHAT">START A CONVERSATION →</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en" class="grain">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gebeya Media — Creative Agency</title>
+  <meta name="description" content="Gebeya Media — Addis Ababa creative studio for animation, commercials, documentary, and branding." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="progress" data-progress></div>
+
+  <div class="preloader" data-preloader aria-hidden="false">
+    <div class="preloader__inner">
+      <svg class="gmark" viewBox="0 0 200 200" aria-hidden="true">
+        <path d="M100 24c-42 0-76 34-76 76s34 76 76 76c34 0 63-22 73-53h-34c-8 16-22 26-39 26-25 0-45-20-45-45s20-45 45-45c18 0 32 10 40 26h35C163 46 134 24 100 24zm16 77h60v26h-86V70h26v31z" />
+      </svg>
+      <div class="preloader__pct mono" data-preloader-pct>000%</div>
+      <div class="mono" style="color: var(--text-2);">SETTING THE SCENE...</div>
+    </div>
+  </div>
+
+  <div class="curtain" data-curtain aria-hidden="true">
+    <div class="curtain__title" data-curtain-title>LOADING</div>
+  </div>
+
+  <div class="cursor" data-cursor aria-hidden="true">
+    <div class="cursor__dot" data-cursor-dot></div>
+    <div class="cursor__ring" data-cursor-ring></div>
+  </div>
+
+  <header class="header" data-header>
+    <div class="header__inner">
+      <a class="brand" href="index.html" data-cursor-hover="HOME" aria-label="Gebeya Media home">
+        <span class="brand__mark" aria-hidden="true">G</span>
+        <span class="brand__word">G MEDIA STUDIOS</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html" aria-current="page" data-cursor-hover="HOME">Home</a>
+        <a href="work.html" data-cursor-hover="WORK">Work</a>
+        <a href="about.html" data-cursor-hover="ABOUT">About</a>
+        <a href="blog.html" data-cursor-hover="BLOG">Blog</a>
+        <a href="contact.html" data-cursor-hover="CONTACT">Contact</a>
+      </nav>
+
+      <div class="header__right">
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme" title="Toggle theme">
+          ☾
+        </button>
+        <button class="hamburger" type="button" data-menu-open aria-expanded="false" aria-controls="overlay" aria-label="Open menu">
+          <span class="hamburger__lines" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="overlay" id="overlay" data-overlay aria-hidden="true">
+    <div class="overlay__inner">
+      <div class="overlay__top">
+        <a class="brand" href="index.html" data-cursor-hover="HOME" aria-label="Gebeya Media home">
+          <span class="brand__mark" aria-hidden="true">G</span>
+          <span class="brand__word" style="opacity:1; transform:none;">G MEDIA STUDIOS</span>
+        </a>
+        <button class="overlay__close" type="button" data-menu-close data-cursor-hover="CLOSE">✕ CLOSE</button>
+      </div>
+
+      <div class="overlay__grid">
+        <div class="menu" aria-label="Overlay navigation">
+          <a href="index.html" data-cursor-hover="HOME"><span class="menu__num mono">01</span><span class="menu__label">HOME</span></a>
+          <a href="work.html" data-cursor-hover="WORK"><span class="menu__num mono">02</span><span class="menu__label">OUR WORK</span></a>
+          <a href="about.html" data-cursor-hover="ABOUT"><span class="menu__num mono">03</span><span class="menu__label">ABOUT US</span></a>
+          <a href="blog.html" data-cursor-hover="BLOG"><span class="menu__num mono">04</span><span class="menu__label">BLOG</span></a>
+          <a href="contact.html" data-cursor-hover="CONTACT"><span class="menu__num mono">05</span><span class="menu__label">CONTACT</span></a>
+        </div>
+
+        <div class="overlay__meta">
+          <div class="meta-card">
+            <div class="mono" style="color: var(--text-2); margin-bottom: 10px;">INFO</div>
+            <a href="mailto:info@gebeyamedia.com" data-cursor-hover="EMAIL">info@gebeyamedia.com</a>
+            <a href="#" data-cursor-hover="CALL">+251 XXX XXX XXX</a>
+            <div style="color: var(--text-1); margin-top: 8px;">Addis Ababa, Ethiopia</div>
+          </div>
+          <div class="meta-card">
+            <div class="mono" style="color: var(--text-2); margin-bottom: 10px;">SOCIALS</div>
+            <a href="#" target="_blank" rel="noreferrer" data-cursor-hover="IG">Instagram</a>
+            <a href="#" target="_blank" rel="noreferrer" data-cursor-hover="YT">YouTube</a>
+            <a href="#" target="_blank" rel="noreferrer" data-cursor-hover="LI">LinkedIn</a>
+            <a href="#" target="_blank" rel="noreferrer" data-cursor-hover="TT">TikTok</a>
+            <a href="#" target="_blank" rel="noreferrer" data-cursor-hover="BE">Behance</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footerline mono">© 2025 Gebeya Media. All rights reserved.</div>
+    </div>
+  </div>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <video data-hero-video autoplay muted loop playsinline preload="metadata">
+          <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+        </video>
+        <div class="hero__shade"></div>
+      </div>
+
+      <div class="hero__edge hero__edge--left">GEBEYA MEDIA © 2025</div>
+      <div class="hero__edge hero__edge--right">
+        <div class="socials">
+          <a href="#" data-cursor-hover="IG">IG</a>
+          <a href="#" data-cursor-hover="YT">YT</a>
+          <a href="#" data-cursor-hover="LI">LI</a>
+          <a href="#" data-cursor-hover="TT">TT</a>
+        </div>
+      </div>
+
+      <div class="hero__content">
+        <div class="hero__tag mono" data-reveal><i></i> CREATIVE 360° MARKETING</div>
+        <h1 data-reveal data-reveal-delay="80">WE CRAFT STORIES<br/>THAT MOVE PEOPLE</h1>
+        <p class="lead" data-reveal data-reveal-delay="160">From concept to screen — animation, commercial, documentary &amp; branding.</p>
+
+        <div class="hero__cta">
+          <button class="btn play" type="button" data-open-showreel data-cursor-hover="PLAY" data-magnetic data-reveal data-reveal-delay="240">
+            <span class="play__icon" aria-hidden="true">▶</span>
+            <span class="mono" style="letter-spacing:.12em;">PLAY SHOWREEL</span>
+          </button>
+          <a class="btn btn--primary" href="work.html" data-cursor-hover="WORK" data-magnetic data-reveal data-reveal-delay="300">VIEW OUR WORK →</a>
+        </div>
+      </div>
+
+      <div class="scrollhint" data-scrollhint>
+        <div class="scrollhint__chev" aria-hidden="true">↓</div>
+        <div class="mono" style="font-size:11px; letter-spacing:.18em; color: var(--text-1);">SCROLL TO EXPLORE</div>
+      </div>
+    </section>
+
+    <section class="section trusted">
+      <div class="container">
+        <div class="kicker mono" data-reveal>TRUSTED BY LEADING BRANDS</div>
+
+        <div class="marquee" aria-label="Client logos">
+          <div class="track track--left" data-track>
+            <div class="logo" data-logo>COOP</div>
+            <div class="logo" data-logo>ETHIO</div>
+            <div class="logo" data-logo>SAFARICOM</div>
+            <div class="logo" data-logo>CBE</div>
+            <div class="logo" data-logo>DASHEN</div>
+            <div class="logo" data-logo>UN</div>
+          </div>
+          <div class="track track--right" data-track>
+            <div class="logo" data-logo>BRAND A</div>
+            <div class="logo" data-logo>BRAND B</div>
+            <div class="logo" data-logo>BRAND C</div>
+            <div class="logo" data-logo>BRAND D</div>
+            <div class="logo" data-logo>BRAND E</div>
+            <div class="logo" data-logo>BRAND F</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about">
+      <div class="container grid-12">
+        <div style="grid-column: span 7;">
+          <div class="eyebrow mono" data-reveal><i></i> WHO WE ARE</div>
+          <h2 data-reveal data-reveal-delay="80">WE DON'T JUST MAKE<br/>CONTENT — WE MAKE<br/>CULTURE.</h2>
+          <p class="lead" data-reveal data-reveal-delay="160">Gebeya Media is Addis Ababa's creative agency for animation, commercials, documentaries, and full-spectrum branding. We blend Ethiopian storytelling traditions with global production standards.</p>
+
+          <div class="stats" aria-label="Studio stats">
+            <div class="stat" data-reveal data-reveal-delay="220"><strong>50+</strong><span>Projects Delivered</span></div>
+            <div class="stat" data-reveal data-reveal-delay="280"><strong>100+</strong><span>Happy Clients</span></div>
+            <div class="stat" data-reveal data-reveal-delay="340"><strong>8+</strong><span>Years Experience</span></div>
+          </div>
+
+          <div style="margin-top: var(--space-xl);">
+            <a href="about.html" class="mono" style="color: var(--accent);" data-cursor-hover="ABOUT" data-magnetic data-reveal data-reveal-delay="420">LEARN MORE ABOUT US →</a>
+          </div>
+        </div>
+
+        <div style="grid-column: span 5;">
+          <div class="visual" aria-hidden="true">
+            <div class="cardlet"><div class="cardlet__inner"></div></div>
+            <div class="cardlet"><div class="cardlet__inner"></div></div>
+            <div class="cardlet"><div class="cardlet__inner"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services">
+      <div class="container">
+        <div class="sectionhead">
+          <div>
+            <div class="mono" style="color: var(--accent);">◇ WHAT WE DO</div>
+            <h2>SERVICES BUILT FOR IMPACT</h2>
+          </div>
+        </div>
+
+        <div class="accordion" role="region" aria-label="Services">
+          <div class="item" data-acc-item aria-expanded="false">
+            <button type="button" data-cursor-hover="EXPLORE">
+              <span class="item__num mono">01</span>
+              <span class="item__title">ANIMATION &amp; MOTION GRAPHICS</span>
+              <span class="plus" aria-hidden="true">+</span>
+            </button>
+            <div class="panel" data-acc-panel>
+              <div class="panel__inner">
+                <div>
+                  <p>High-impact motion for brands, campaigns, explainers, and social.</p>
+                  <ul>
+                    <li>2D / 3D animation</li>
+                    <li>Title sequences</li>
+                    <li>Social cutdowns</li>
+                    <li>Visual storytelling systems</li>
+                  </ul>
+                  <div style="margin-top: 14px;"><a href="work.html" class="mono" style="color: var(--accent);" data-cursor-hover="WORK">VIEW RELATED WORK →</a></div>
+                </div>
+                <div class="preview" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="item" data-acc-item aria-expanded="false">
+            <button type="button" data-cursor-hover="EXPLORE">
+              <span class="item__num mono">02</span>
+              <span class="item__title">COMMERCIAL PRODUCTION</span>
+              <span class="plus" aria-hidden="true">+</span>
+            </button>
+            <div class="panel" data-acc-panel>
+              <div class="panel__inner">
+                <div>
+                  <p>Cinematic TVCs and digital commercials built for recall and emotion.</p>
+                  <ul>
+                    <li>Concept → script → shoot</li>
+                    <li>Editing &amp; color</li>
+                    <li>Sound design</li>
+                  </ul>
+                  <div style="margin-top: 14px;"><a href="work.html" class="mono" style="color: var(--accent);" data-cursor-hover="WORK">VIEW RELATED WORK →</a></div>
+                </div>
+                <div class="preview" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="item" data-acc-item aria-expanded="false">
+            <button type="button" data-cursor-hover="EXPLORE">
+              <span class="item__num mono">03</span>
+              <span class="item__title">DOCUMENTARY FILMMAKING</span>
+              <span class="plus" aria-hidden="true">+</span>
+            </button>
+            <div class="panel" data-acc-panel>
+              <div class="panel__inner">
+                <div>
+                  <p>Authentic storytelling with disciplined production and human-first craft.</p>
+                  <ul>
+                    <li>Field production</li>
+                    <li>Interview-driven narratives</li>
+                    <li>Archival storytelling</li>
+                  </ul>
+                  <div style="margin-top: 14px;"><a href="work.html" class="mono" style="color: var(--accent);" data-cursor-hover="WORK">VIEW RELATED WORK →</a></div>
+                </div>
+                <div class="preview" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="item" data-acc-item aria-expanded="false">
+            <button type="button" data-cursor-hover="EXPLORE">
+              <span class="item__num mono">04</span>
+              <span class="item__title">BRANDING &amp; VISUAL IDENTITY</span>
+              <span class="plus" aria-hidden="true">+</span>
+            </button>
+            <div class="panel" data-acc-panel>
+              <div class="panel__inner">
+                <div>
+                  <p>Systems that stay consistent everywhere: screen, print, social, and space.</p>
+                  <ul>
+                    <li>Logo &amp; identity</li>
+                    <li>Brand guidelines</li>
+                    <li>Campaign visual language</li>
+                  </ul>
+                  <div style="margin-top: 14px;"><a href="work.html" class="mono" style="color: var(--accent);" data-cursor-hover="WORK">VIEW RELATED WORK →</a></div>
+                </div>
+                <div class="preview" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="item" data-acc-item aria-expanded="false">
+            <button type="button" data-cursor-hover="EXPLORE">
+              <span class="item__num mono">05</span>
+              <span class="item__title">SOCIAL MEDIA CAMPAIGNS</span>
+              <span class="plus" aria-hidden="true">+</span>
+            </button>
+            <div class="panel" data-acc-panel>
+              <div class="panel__inner">
+                <div>
+                  <p>Always-on content and campaigns built for platform-native momentum.</p>
+                  <ul>
+                    <li>Content pillars</li>
+                    <li>Motion templates</li>
+                    <li>Campaign rollout</li>
+                  </ul>
+                  <div style="margin-top: 14px;"><a href="work.html" class="mono" style="color: var(--accent);" data-cursor-hover="WORK">VIEW RELATED WORK →</a></div>
+                </div>
+                <div class="preview" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="item" data-acc-item aria-expanded="false">
+            <button type="button" data-cursor-hover="EXPLORE">
+              <span class="item__num mono">06</span>
+              <span class="item__title">PHOTOGRAPHY &amp; CONTENT</span>
+              <span class="plus" aria-hidden="true">+</span>
+            </button>
+            <div class="panel" data-acc-panel>
+              <div class="panel__inner">
+                <div>
+                  <p>Photography and content capture optimized for brand consistency.</p>
+                  <ul>
+                    <li>Product &amp; lifestyle</li>
+                    <li>Portraits</li>
+                    <li>Content packs</li>
+                  </ul>
+                  <div style="margin-top: 14px;"><a href="work.html" class="mono" style="color: var(--accent);" data-cursor-hover="WORK">VIEW RELATED WORK →</a></div>
+                </div>
+                <div class="preview" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section work">
+      <div class="container">
+        <div class="sectionhead">
+          <div>
+            <div class="mono" style="color: var(--accent);">◇ SELECTED WORK</div>
+            <h2>PROJECTS THAT SPEAK LOUDER</h2>
+          </div>
+        </div>
+
+        <div class="workgrid">
+          <a class="card" href="work.html" data-cursor-hover="VIEW" aria-label="Project 1">
+            <div class="card__media" aria-hidden="true"></div>
+            <div class="card__content">
+              <span class="tag mono">COMMERCIAL</span>
+              <h3>Project One</h3>
+              <div class="meta"><span>Client Name</span><span class="mono" style="letter-spacing:.08em; color: var(--text-2);">2025</span></div>
+              <div class="cta mono">VIEW PROJECT →</div>
+            </div>
+          </a>
+
+          <div style="display:grid; gap: clamp(18px, 2.4vw, 28px);">
+            <a class="card" href="work.html" data-cursor-hover="VIEW" aria-label="Project 2" style="min-height: 240px;">
+              <div class="card__media" aria-hidden="true"></div>
+              <div class="card__content">
+                <span class="tag mono">ANIMATION</span>
+                <h3>Project Two</h3>
+                <div class="meta"><span>Client Name</span><span class="mono" style="letter-spacing:.08em; color: var(--text-2);">2024</span></div>
+                <div class="cta mono">VIEW PROJECT →</div>
+              </div>
+            </a>
+            <a class="card" href="work.html" data-cursor-hover="VIEW" aria-label="Project 3" style="min-height: 240px;">
+              <div class="card__media" aria-hidden="true"></div>
+              <div class="card__content">
+                <span class="tag mono">DOCUMENTARY</span>
+                <h3>Project Three</h3>
+                <div class="meta"><span>Client Name</span><span class="mono" style="letter-spacing:.08em; color: var(--text-2);">2023</span></div>
+                <div class="cta mono">VIEW PROJECT →</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <a class="card" href="work.html" data-cursor-hover="WORK" aria-label="Project 4" style="margin-top: clamp(18px, 2.4vw, 28px); min-height: 260px;">
+          <div class="card__media" aria-hidden="true"></div>
+          <div class="card__content">
+            <span class="tag mono">BRANDING</span>
+            <h3>Project Four</h3>
+            <div class="meta"><span>Client Name</span><span class="mono" style="letter-spacing:.08em; color: var(--text-2);">2022</span></div>
+            <div class="cta mono">VIEW PROJECT →</div>
+          </div>
+        </a>
+
+        <div class="bigbtn">
+          <a class="btn btn--outline" href="work.html" data-cursor-hover="WORK">VIEW ALL PROJECTS →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" data-modal aria-hidden="true" role="dialog" aria-label="Showreel">
+    <div class="modal__frame">
+      <div class="modal__bar">
+        <button type="button" data-modal-close aria-label="Close">✕</button>
+      </div>
+      <video controls playsinline preload="metadata">
+        <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" class="grain">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gebeya Media — Blog</title>
+  <meta name="description" content="Insights, behind the scenes, and stories." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="progress" data-progress></div>
+
+  <div class="curtain" data-curtain aria-hidden="true">
+    <div class="curtain__title" data-curtain-title>BLOG</div>
+  </div>
+
+  <div class="cursor" data-cursor aria-hidden="true">
+    <div class="cursor__dot" data-cursor-dot></div>
+    <div class="cursor__ring" data-cursor-ring></div>
+  </div>
+
+  <header class="header" data-header>
+    <div class="header__inner">
+      <a class="brand" href="index.html" data-cursor-hover="HOME" aria-label="Gebeya Media home">
+        <span class="brand__mark" aria-hidden="true">G</span>
+        <span class="brand__word">G MEDIA STUDIOS</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html" data-cursor-hover="HOME">Home</a>
+        <a href="work.html" data-cursor-hover="WORK">Work</a>
+        <a href="about.html" data-cursor-hover="ABOUT">About</a>
+        <a href="blog.html" aria-current="page" data-cursor-hover="BLOG">Blog</a>
+        <a href="contact.html" data-cursor-hover="CONTACT">Contact</a>
+      </nav>
+
+      <div class="header__right">
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme" title="Toggle theme">
+          ☾
+        </button>
+        <button class="hamburger" type="button" data-menu-open aria-expanded="false" aria-controls="overlay" aria-label="Open menu">
+          <span class="hamburger__lines" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="overlay" id="overlay" data-overlay aria-hidden="true">
+    <div class="overlay__inner">
+      <div class="overlay__top">
+        <a class="brand" href="index.html" data-cursor-hover="HOME" aria-label="Gebeya Media home">
+          <span class="brand__mark" aria-hidden="true">G</span>
+          <span class="brand__word" style="opacity:1; transform:none;">G MEDIA STUDIOS</span>
+        </a>
+        <button class="overlay__close" type="button" data-menu-close data-cursor-hover="CLOSE">✕ CLOSE</button>
+      </div>
+
+      <div class="overlay__grid">
+        <div class="menu" aria-label="Overlay navigation">
+          <a href="index.html" data-cursor-hover="HOME"><span class="menu__num mono">01</span><span class="menu__label">HOME</span></a>
+          <a href="work.html" data-cursor-hover="WORK"><span class="menu__num mono">02</span><span class="menu__label">OUR WORK</span></a>
+          <a href="about.html" data-cursor-hover="ABOUT"><span class="menu__num mono">03</span><span class="menu__label">ABOUT US</span></a>
+          <a href="blog.html" data-cursor-hover="BLOG"><span class="menu__num mono">04</span><span class="menu__label">BLOG</span></a>
+          <a href="contact.html" data-cursor-hover="CONTACT"><span class="menu__num mono">05</span><span class="menu__label">CONTACT</span></a>
+        </div>
+
+        <div class="overlay__meta">
+          <div class="meta-card">
+            <div class="mono" style="color: var(--text-2); margin-bottom: 10px;">INFO</div>
+            <a href="mailto:info@gebeyamedia.com" data-cursor-hover="EMAIL">info@gebeyamedia.com</a>
+            <a href="#" data-cursor-hover="CALL">+251 XXX XXX XXX</a>
+            <div style="color: var(--text-1); margin-top: 8px;">Addis Ababa, Ethiopia</div>
+          </div>
+          <div class="meta-card">
+            <div class="mono" style="color: var(--text-2); margin-bottom: 10px;">SOCIALS</div>
+            <a href="#" target="_blank" rel="noreferrer" data-cursor-hover="IG">Instagram</a>
+            <a href="#" target="_blank" rel="noreferrer" data-cursor-hover="YT">YouTube</a>
+            <a href="#" target="_blank" rel="noreferrer" data-cursor-hover="LI">LinkedIn</a>
+            <a href="#" target="_blank" rel="noreferrer" data-cursor-hover="TT">TikTok</a>
+            <a href="#" target="_blank" rel="noreferrer" data-cursor-hover="BE">Behance</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footerline mono">© 2025 Gebeya Media. All rights reserved.</div>
+    </div>
+  </div>
+
+  <main id="main" class="page">
+    <div class="container">
+      <h1>BLOG</h1>
+      <p>Articles, behind-the-scenes, and studio notes. Next we’ll implement post templates + newsletter + categories.</p>
+
+      <div style="margin-top: var(--space-2xl); display:grid; gap: 18px;">
+        <a class="card" href="blog.html" data-cursor-hover="READ" aria-label="Post" style="min-height: 220px;">
+          <div class="card__media" aria-hidden="true"></div>
+          <div class="card__content">
+            <span class="tag mono">BEHIND THE SCENES</span>
+            <h3>How we build a cinematic brand film</h3>
+            <div class="meta"><span>5 min read</span><span class="mono" style="letter-spacing:.08em; color: var(--text-2);">2026</span></div>
+            <div class="cta mono">READ →</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="bigbtn">
+        <a class="btn btn--outline" href="contact.html" data-cursor-hover="CHAT">START A CONVERSATION →</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
