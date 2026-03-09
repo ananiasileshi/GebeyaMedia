@@ -722,8 +722,8 @@ html[data-theme="light"] .hero__shade{
 }
 
 .logo{
-  width: 120px;
-  height: 44px;
+  width: 160px;
+  height: 58px;
   border-radius: var(--radius-md);
   display:grid;
   place-items:center;
@@ -740,8 +740,8 @@ html[data-theme="light"] .hero__shade{
 }
 
 .logo img{
-  max-width: 88%;
-  max-height: 70%;
+  max-width: 92%;
+  max-height: 78%;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -761,7 +761,7 @@ html[data-theme="light"] .logo img{
 
 @media (max-width: 640px){
   .track{ gap: 44px; }
-  .logo{ width: 104px; height: 40px; }
+  .logo{ width: 132px; height: 50px; }
 }
 
 .logo:hover{ filter: grayscale(0); transform: scale(1.08); opacity: 1; }
