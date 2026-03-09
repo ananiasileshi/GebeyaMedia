@@ -258,6 +258,47 @@
     });
   }
 
+  function initContactForm() {
+    const form = qs('[data-contact-form]');
+    if (!form) return;
+
+    const to = 'info@gebeyamedia.com';
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const fd = new FormData(form);
+      const name = String(fd.get('name') || '').trim();
+      const email = String(fd.get('email') || '').trim();
+      const type = String(fd.get('type') || '').trim();
+      const message = String(fd.get('message') || '').trim();
+
+      if (!name || !email || !type || !message) {
+        try {
+          form.reportValidity();
+        } catch { }
+        return;
+      }
+
+      const subject = `New inquiry: ${type} — ${name}`;
+      const body = [
+        'New inquiry from Gebeya Media site',
+        '',
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Project type: ${type}`,
+        '',
+        'Details:',
+        message,
+        '',
+        `Page: ${window.location.href}`
+      ].join('\n');
+
+      const href = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = href;
+    });
+  }
+
   // Preloader
   function initPreloader() {
     const pre = qs('[data-preloader]');
@@ -1454,6 +1495,7 @@
     safe('workPage', initWorkPage);
     safe('workFilters', initWorkFilters);
     safe('previewVideos', initPreviewVideos);
+    safe('contactForm', initContactForm);
     safe('projectPage', initProjectPage);
     safe('sharedTransition', initSharedElementOpenTransition);
     safe('blogFilters', initBlogFilters);
