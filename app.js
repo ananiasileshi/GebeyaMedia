@@ -64,6 +64,58 @@
     }
   ];
 
+  const POSTS = [
+    {
+      slug: 'cinematic-brand-film',
+      title: 'How we build a cinematic brand film',
+      category: 'BTS',
+      categoryKey: 'bts',
+      date: '2026-03-09',
+      readTime: '5 min read',
+      deck: 'A practical look at how we move from brief to script, shoot, edit, and sound — while keeping the brand voice crisp.',
+      body: [
+        { type: 'p', text: 'A cinematic brand film is less about “big shots” and more about clarity: one message, one emotion, one arc.' },
+        { type: 'h2', text: '1) Start with one promise' },
+        { type: 'p', text: 'Before mood boards, we lock the promise. If we can’t say it in one sentence, the film won’t land.' },
+        { type: 'h2', text: '2) Rhythm is a design tool' },
+        { type: 'p', text: 'We storyboard beats, not scenes. The edit is planned early so the shoot is purposeful.' },
+        { type: 'p', text: 'Then we build cutdowns that preserve the promise — not just random highlights.' }
+      ]
+    },
+    {
+      slug: 'motion-design-rhythm',
+      title: 'Motion design rhythm: timing, contrast, and restraint',
+      category: 'CRAFT',
+      categoryKey: 'craft',
+      date: '2026-03-09',
+      readTime: '4 min read',
+      deck: 'A few rules we use to make motion feel premium: contrast, spacing, and intentional pauses.',
+      body: [
+        { type: 'p', text: 'Premium motion rarely screams. It breathes. It makes space for the message.' },
+        { type: 'h2', text: 'Use contrast, not chaos' },
+        { type: 'p', text: 'Fast → slow. Loud → quiet. Big → small. Contrast creates focus and “luxury” pacing.' },
+        { type: 'h2', text: 'Let type lead' },
+        { type: 'p', text: 'Treat typography as a graphic element — scale it, crop it, and animate it with restraint.' }
+      ]
+    },
+    {
+      slug: 'brand-systems',
+      title: 'Why brand systems win: consistency at speed',
+      category: 'INSIGHTS',
+      categoryKey: 'insights',
+      date: '2026-03-09',
+      readTime: '6 min read',
+      deck: 'The best brands don’t just look good — they stay consistent across every touchpoint without slowing teams down.',
+      body: [
+        { type: 'p', text: 'A brand system is a production tool. It reduces decision fatigue and increases consistency.' },
+        { type: 'h2', text: 'Consistency is trust' },
+        { type: 'p', text: 'When your audience sees the same hierarchy and tone everywhere, the brand feels “real”.' },
+        { type: 'h2', text: 'Speed comes from constraints' },
+        { type: 'p', text: 'Clear rules make it easier to create. Constraints are not limits — they’re leverage.' }
+      ]
+    }
+  ];
+
   function clamp(n, a, b) {
     return Math.max(a, Math.min(b, n));
   }
@@ -422,16 +474,25 @@
     const overlay = qs('[data-overlay]');
     if (!menuBtn || !overlay) return;
 
+    let lastFocus = null;
+
+    const focusables = () => qsa('a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])', overlay)
+      .filter((el) => !el.hasAttribute('disabled') && el.getAttribute('aria-hidden') !== 'true');
+
     const open = () => {
+      lastFocus = document.activeElement;
       document.documentElement.classList.add('is-menu-open');
       menuBtn.setAttribute('aria-expanded', 'true');
       overlay.setAttribute('aria-hidden', 'false');
+      const f = focusables();
+      if (f[0]) f[0].focus();
     };
 
     const close = () => {
       document.documentElement.classList.remove('is-menu-open');
       menuBtn.setAttribute('aria-expanded', 'false');
       overlay.setAttribute('aria-hidden', 'true');
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
     };
 
     menuBtn.addEventListener('click', () => {
@@ -448,6 +509,22 @@
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') close();
+
+      if (e.key === 'Tab' && document.documentElement.classList.contains('is-menu-open')) {
+        const f = focusables();
+        if (f.length === 0) return;
+        const first = f[0];
+        const last = f[f.length - 1];
+        const active = document.activeElement;
+
+        if (e.shiftKey && active === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && active === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     });
 
     qsa('a', overlay).forEach((a) => {
@@ -455,6 +532,70 @@
     });
 
     close();
+  }
+
+  function initBlogFilters() {
+    const list = qs('[data-post-list]');
+    if (!list) return;
+
+    const chips = qsa('[data-post-filter]');
+    const posts = qsa('[data-post][data-post-category]', list);
+
+    const apply = (key) => {
+      chips.forEach((c) => c.classList.toggle('is-active', c.getAttribute('data-post-filter') === key));
+      posts.forEach((p) => {
+        const cat = p.getAttribute('data-post-category');
+        const show = key === 'all' || key === cat;
+        p.style.display = show ? '' : 'none';
+      });
+    };
+
+    chips.forEach((c) => {
+      c.addEventListener('click', () => apply(c.getAttribute('data-post-filter') || 'all'));
+    });
+
+    apply('all');
+  }
+
+  function initPostPage() {
+    const root = qs('[data-post-page]');
+    if (!root) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('slug') || '';
+    const post = POSTS.find((p) => p.slug === slug) || POSTS[0];
+    if (!post) return;
+
+    const set = (sel, val) => {
+      const el = qs(sel);
+      if (!el) return;
+      el.textContent = val;
+    };
+
+    set('[data-post-title]', post.title);
+    set('[data-post-category]', post.category);
+    set('[data-post-deck]', post.deck);
+    set('[data-post-meta]', `${post.readTime}  •  ${post.date}`);
+
+    const body = qs('[data-post-body]');
+    if (body) {
+      body.innerHTML = '';
+      post.body.forEach((blk) => {
+        if (blk.type === 'h2') {
+          const h = document.createElement('h2');
+          h.textContent = blk.text;
+          h.setAttribute('data-reveal', '');
+          body.appendChild(h);
+          return;
+        }
+        const p = document.createElement('p');
+        p.textContent = blk.text;
+        p.setAttribute('data-reveal', '');
+        body.appendChild(p);
+      });
+    }
+
+    document.title = `Gebeya Media — ${post.title}`;
   }
 
   // Curtain page transitions (simple)
@@ -730,6 +871,8 @@
     initPreviewVideos();
     initProjectPage();
     initSharedElementOpenTransition();
+    initBlogFilters();
+    initPostPage();
     initReveals();
     initMagneticButtons();
   });

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gebeya Media — Blog</title>
-  <meta name="description" content="Insights, behind the scenes, and stories." />
+  <title>Gebeya Media — Post</title>
+  <meta name="description" content="Article." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -12,7 +12,7 @@
   <div class="progress" data-progress></div>
 
   <div class="curtain" data-curtain aria-hidden="true">
-    <div class="curtain__title" data-curtain-title>BLOG</div>
+    <div class="curtain__title" data-curtain-title>POST</div>
   </div>
 
   <div class="cursor" data-cursor aria-hidden="true">
@@ -31,14 +31,12 @@
         <a href="index.html" data-cursor-hover="HOME">Home</a>
         <a href="work.html" data-cursor-hover="WORK">Work</a>
         <a href="about.html" data-cursor-hover="ABOUT">About</a>
-        <a href="blog.html" aria-current="page" data-cursor-hover="BLOG">Blog</a>
+        <a href="blog.html" data-cursor-hover="BLOG">Blog</a>
         <a href="contact.html" data-cursor-hover="CONTACT">Contact</a>
       </nav>
 
       <div class="header__right">
-        <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme" title="Toggle theme">
-          ☾
-        </button>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme" title="Toggle theme">☾</button>
         <button class="hamburger" type="button" data-menu-open aria-expanded="false" aria-controls="overlay" aria-label="Open menu">
           <span class="hamburger__lines" aria-hidden="true">
             <span></span><span></span><span></span>
@@ -89,58 +87,20 @@
     </div>
   </div>
 
-  <main id="main" class="page">
+  <main id="main" class="article" data-post-page>
     <div class="container">
-      <h1>BLOG</h1>
-      <p data-reveal>Insights, behind-the-scenes, and studio notes — written with the same discipline as the work.</p>
+      <header class="article__head">
+        <div class="mono" style="color: var(--accent);" data-post-category data-reveal>INSIGHTS</div>
+        <h1 data-post-title data-reveal data-reveal-delay="80">Post Title</h1>
+        <p class="article__deck" data-post-deck data-reveal data-reveal-delay="160"></p>
+        <div class="mono" style="color: var(--text-2); margin-top: 14px;" data-post-meta data-reveal data-reveal-delay="240"></div>
+      </header>
 
-      <div class="chips" aria-label="Blog categories">
-        <button class="chip mono is-active" type="button" data-post-filter="all" data-cursor-hover="FILTER" data-magnetic data-reveal>ALL</button>
-        <button class="chip mono" type="button" data-post-filter="bts" data-cursor-hover="FILTER" data-magnetic data-reveal data-reveal-delay="60">BTS</button>
-        <button class="chip mono" type="button" data-post-filter="craft" data-cursor-hover="FILTER" data-magnetic data-reveal data-reveal-delay="120">CRAFT</button>
-        <button class="chip mono" type="button" data-post-filter="insights" data-cursor-hover="FILTER" data-magnetic data-reveal data-reveal-delay="180">INSIGHTS</button>
-      </div>
-
-      <section class="postlist" aria-label="Posts" data-post-list>
-        <a class="post" href="post.html?slug=cinematic-brand-film" data-post data-post-category="bts" data-cursor-hover="READ" aria-label="Post">
-          <div>
-            <h2 class="post__title">How we build a cinematic brand film</h2>
-            <div class="post__meta">
-              <span class="post__tag mono">BTS</span>
-              <span>5 min read</span>
-              <span class="mono" style="letter-spacing:.08em; color: var(--text-2);">2026</span>
-            </div>
-          </div>
-          <div class="post__arrow" aria-hidden="true">→</div>
-        </a>
-
-        <a class="post" href="post.html?slug=motion-design-rhythm" data-post data-post-category="craft" data-cursor-hover="READ" aria-label="Post">
-          <div>
-            <h2 class="post__title">Motion design rhythm: timing, contrast, and restraint</h2>
-            <div class="post__meta">
-              <span class="post__tag mono">CRAFT</span>
-              <span>4 min read</span>
-              <span class="mono" style="letter-spacing:.08em; color: var(--text-2);">2026</span>
-            </div>
-          </div>
-          <div class="post__arrow" aria-hidden="true">→</div>
-        </a>
-
-        <a class="post" href="post.html?slug=brand-systems" data-post data-post-category="insights" data-cursor-hover="READ" aria-label="Post">
-          <div>
-            <h2 class="post__title">Why brand systems win: consistency at speed</h2>
-            <div class="post__meta">
-              <span class="post__tag mono">INSIGHTS</span>
-              <span>6 min read</span>
-              <span class="mono" style="letter-spacing:.08em; color: var(--text-2);">2026</span>
-            </div>
-          </div>
-          <div class="post__arrow" aria-hidden="true">→</div>
-        </a>
-      </section>
+      <article class="article__body" data-post-body>
+      </article>
 
       <div class="bigbtn">
-        <a class="btn btn--outline" href="contact.html" data-cursor-hover="CHAT">START A CONVERSATION →</a>
+        <a class="btn btn--outline" href="blog.html" data-cursor-hover="BLOG" data-magnetic>BACK TO BLOG →</a>
       </div>
     </div>
   </main>
