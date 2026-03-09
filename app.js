@@ -37,6 +37,8 @@
         { label: 'Turnaround', value: '15 days' },
         { label: 'Platforms', value: 'IG / TikTok / YouTube' }
       ],
+      previewVideo: '',
+      previewPoster: '',
       quote: {
         text: 'A premium campaign is a production system: one promise, one rhythm, and a cutdown plan baked in from day one.',
         by: 'Creative Direction'
@@ -78,6 +80,8 @@
         { label: 'Components', value: '36+' },
         { label: 'Easings', value: '6' }
       ],
+      previewVideo: '',
+      previewPoster: '',
       quote: {
         text: 'The best motion design feels editorial: bold type, clear hierarchy, and pauses that let the message land.',
         by: 'Motion Lead'
@@ -120,6 +124,8 @@
         { label: 'Locations', value: '2' },
         { label: 'Languages', value: '2' }
       ],
+      previewVideo: '',
+      previewPoster: '',
       quote: {
         text: 'Documentary craft is restraint: protect the truth, then shape it with rhythm and sound that disappears.',
         by: 'Director'
@@ -161,6 +167,8 @@
         { label: 'Assets', value: '60+' },
         { label: 'Lockups', value: '12' }
       ],
+      previewVideo: '',
+      previewPoster: '',
       quote: {
         text: 'Brand systems win when they ship: rules that keep teams consistent without slowing production down.',
         by: 'Brand Lead'
@@ -479,9 +487,16 @@
 
     grid.innerHTML = '';
 
-    const videoSrc = 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4';
+    const fallbackVideoSrc = 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4';
 
     const makeCard = (p) => {
+      const vsrc = (p && typeof p.previewVideo === 'string' && p.previewVideo.trim().length > 0)
+        ? p.previewVideo.trim()
+        : fallbackVideoSrc;
+      const poster = (p && typeof p.previewPoster === 'string' && p.previewPoster.trim().length > 0)
+        ? p.previewPoster.trim()
+        : '';
+
       const a = document.createElement('a');
       a.className = 'card';
       a.href = `project.html?slug=${encodeURIComponent(p.slug)}`;
@@ -492,9 +507,9 @@
 
       a.innerHTML = `
         <div class="card__media" aria-hidden="true">
-          <div class="poster"></div>
+          <div class="poster"${poster ? ` style=\"background-image:url('${poster.replace(/'/g, "\\'")}'); background-size:cover; background-position:center;\"` : ''}></div>
           <video muted loop playsinline preload="metadata" data-preview-video>
-            <source src="${videoSrc}" type="video/mp4" />
+            <source src="${vsrc}" type="video/mp4" />
           </video>
         </div>
         <div class="card__content">
