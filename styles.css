@@ -917,9 +917,10 @@ html[data-theme="light"] .cardlet{
 }
 
 .statsviz{
-  align-items:flex-end;
-  gap: 24px;
-  margin-bottom: var(--space-2xl);
+  margin-top: var(--space-xl);
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: clamp(18px, 2.4vw, 28px);
 }
 
 .sectionhead h2{
