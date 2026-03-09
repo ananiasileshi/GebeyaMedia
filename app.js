@@ -386,6 +386,80 @@
     apply('all');
   }
 
+  function initWorkPage() {
+    const grid = qs('[data-work-grid]');
+    if (!grid) return;
+    if (grid.getAttribute('data-work-rendered') === '1') return;
+    grid.setAttribute('data-work-rendered', '1');
+
+    grid.innerHTML = '';
+
+    const videoSrc = 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4';
+
+    const makeCard = (p) => {
+      const a = document.createElement('a');
+      a.className = 'card';
+      a.href = `project.html?slug=${encodeURIComponent(p.slug)}`;
+      a.setAttribute('data-preview', '');
+      a.setAttribute('data-category', p.categoryKey || 'all');
+      a.setAttribute('data-cursor-hover', 'VIEW');
+      a.setAttribute('aria-label', p.title || 'Project');
+
+      a.innerHTML = `
+        <div class="card__media" aria-hidden="true">
+          <div class="poster"></div>
+          <video muted loop playsinline preload="metadata" data-preview-video>
+            <source src="${videoSrc}" type="video/mp4" />
+          </video>
+        </div>
+        <div class="card__content">
+          <span class="tag mono">${(p.category || '').toUpperCase()}</span>
+          <h3>${p.title || ''}</h3>
+          <div class="meta"><span>${p.client || ''}</span><span class="mono" style="letter-spacing:.08em; color: var(--text-2);">${p.year || ''}</span></div>
+          <div class="cta mono">VIEW PROJECT →</div>
+        </div>
+        <div class="card__line" aria-hidden="true"></div>
+      `;
+
+      a.setAttribute('data-reveal', '');
+      return a;
+    };
+
+    const items = Array.isArray(PROJECTS) ? PROJECTS : [];
+    items.forEach((p, idx) => {
+      const card = makeCard(p);
+
+      if (idx === 0) {
+        grid.appendChild(card);
+        return;
+      }
+
+      if (idx === 1) {
+        const stack = document.createElement('div');
+        stack.className = 'stack';
+        stack.appendChild(card);
+        grid.appendChild(stack);
+        return;
+      }
+
+      if (idx === 2) {
+        const stack = qs('.stack', grid);
+        if (stack) stack.appendChild(card);
+        else grid.appendChild(card);
+        return;
+      }
+
+      if (idx === 3) {
+        card.style.gridColumn = '1 / -1';
+        card.style.minHeight = '320px';
+        grid.appendChild(card);
+        return;
+      }
+
+      grid.appendChild(card);
+    });
+  }
+
   function initPreviewVideos() {
     const cards = qsa('[data-preview]');
     if (cards.length === 0) return;
@@ -1293,6 +1367,7 @@
     safe('scrollHint', initScrollHint);
     safe('cursor', initCursor);
     safe('marquee', initMarquee);
+    safe('workPage', initWorkPage);
     safe('workFilters', initWorkFilters);
     safe('previewVideos', initPreviewVideos);
     safe('projectPage', initProjectPage);
