@@ -743,6 +743,10 @@ html[data-theme="light"] .hero__shade{
   background: linear-gradient(180deg, var(--bg-0), var(--bg-1));
 }
 
+.stats-section{
+  background: linear-gradient(180deg, var(--bg-1), var(--bg-0));
+}
+
 .kicker{
   display:flex;
   align-items:center;
