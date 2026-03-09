@@ -216,6 +216,29 @@ html[data-theme="light"] .nav a{
   min-width: 220px;
 }
 
+.brand__img{
+  height: 28px;
+  width: auto;
+  display:block;
+  transform: translateZ(0);
+}
+
+.header.is-solid .brand__img{
+  height: 22px;
+}
+
+@media (max-width: 640px){
+  .brand__img{ height: 24px; }
+  .header.is-solid .brand__img{ height: 20px; }
+}
+
+html[data-theme="light"] .header .brand{
+  padding: 8px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(10,10,10,.92);
+  border: 1px solid rgba(0,0,0,.06);
+}
+
 .brand__mark{
   width:34px;
   height:34px;

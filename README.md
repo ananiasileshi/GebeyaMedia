@@ -6,9 +6,12 @@
 - `work.html` — work scaffold
 - `about.html` — about scaffold
 - `blog.html` — blog scaffold
+- `post.html` — blog post template
 - `contact.html` — contact scaffold
+- `project.html` — project case study template
 - `styles.css` — global design tokens + UI styles
 - `app.js` — interactions (preloader, overlay nav, curtain transitions, cursor, accordion, etc.)
+- `logo_inverted-1024x427.png` — header/overlay logo image
 
 ## Preview
 
