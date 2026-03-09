@@ -37,6 +37,17 @@
         { label: 'Turnaround', value: '15 days' },
         { label: 'Platforms', value: 'IG / TikTok / YouTube' }
       ],
+      quote: {
+        text: 'A premium campaign is a production system: one promise, one rhythm, and a cutdown plan baked in from day one.',
+        by: 'Creative Direction'
+      },
+      process: [
+        { title: 'Discovery', text: 'Align on one promise, audience, and tone. Define constraints early so production moves fast.' },
+        { title: 'Pre-production', text: 'Script beats, storyboard timing, and lock the shotlist to protect edit rhythm.' },
+        { title: 'Production', text: 'Cinematic lighting and controlled movement. Capture hero moments with cutdowns in mind.' },
+        { title: 'Post', text: 'Edit to the promise, then craft modular cutdowns that keep the arc intact.' }
+      ],
+      deliverables: ['Hero film', '6 cutdowns', 'Endcards', 'Social exports'],
       gallery: []
     },
     {
@@ -67,6 +78,17 @@
         { label: 'Components', value: '36+' },
         { label: 'Easings', value: '6' }
       ],
+      quote: {
+        text: 'The best motion design feels editorial: bold type, clear hierarchy, and pauses that let the message land.',
+        by: 'Motion Lead'
+      },
+      process: [
+        { title: 'Audit', text: 'Simplify the narrative and map complexity into a clear typographic structure.' },
+        { title: 'Design Language', text: 'Define a modular system of type, shapes, and transitions that scales.' },
+        { title: 'Animation', text: 'Build timing rules and reusable components to keep the rhythm consistent.' },
+        { title: 'Delivery', text: 'Export presets and templates so the system stays fast in real production.' }
+      ],
+      deliverables: ['Explainer video', 'Motion toolkit', 'Template pack', 'Export presets'],
       gallery: []
     },
     {
@@ -98,6 +120,17 @@
         { label: 'Locations', value: '2' },
         { label: 'Languages', value: '2' }
       ],
+      quote: {
+        text: 'Documentary craft is restraint: protect the truth, then shape it with rhythm and sound that disappears.',
+        by: 'Director'
+      },
+      process: [
+        { title: 'Research', text: 'Find the human arc and identify the moments that carry the story.' },
+        { title: 'Field Production', text: 'Small footprint, intentional coverage, and disciplined audio capture.' },
+        { title: 'Edit', text: 'Let the voices lead, then use visuals to support clarity—not spectacle.' },
+        { title: 'Sound + Grade', text: 'Clean dialogue, natural presence, and a restrained grade for honesty.' }
+      ],
+      deliverables: ['Short documentary', 'Trailer cut', 'Subtitled version'],
       gallery: []
     },
     {
@@ -128,6 +161,17 @@
         { label: 'Assets', value: '60+' },
         { label: 'Lockups', value: '12' }
       ],
+      quote: {
+        text: 'Brand systems win when they ship: rules that keep teams consistent without slowing production down.',
+        by: 'Brand Lead'
+      },
+      process: [
+        { title: 'Strategy', text: 'Define the brand promise and what the system must do in real use.' },
+        { title: 'Identity', text: 'Build a wordmark + grid rules that scale across touchpoints.' },
+        { title: 'System', text: 'Typography hierarchy, color constraints, and layout rules for speed.' },
+        { title: 'Guidelines', text: 'Codify the system into a clear playbook teams can actually follow.' }
+      ],
+      deliverables: ['Logo system', 'Brand guidelines', 'Asset library', 'Templates'],
       gallery: []
     }
   ];
@@ -529,6 +573,46 @@
     set('[data-project-results]', p.results);
 
     set('[data-project-overview]', p.overview || '');
+
+    const quoteTextEl = qs('[data-project-quote]');
+    const quoteByEl = qs('[data-project-quote-by]');
+    if (quoteTextEl) {
+      const qt = (p.quote && p.quote.text) ? p.quote.text : '';
+      quoteTextEl.textContent = qt;
+      quoteTextEl.closest('.pullquote')?.classList.toggle('is-empty', qt.length === 0);
+    }
+    if (quoteByEl) {
+      const qb = (p.quote && p.quote.by) ? p.quote.by : '';
+      quoteByEl.textContent = qb;
+    }
+
+    const procRoot = qs('[data-project-process]');
+    if (procRoot) {
+      procRoot.innerHTML = '';
+      const steps = Array.isArray(p.process) ? p.process : [];
+      steps.forEach((s, idx) => {
+        const row = document.createElement('div');
+        row.className = 'step';
+        row.innerHTML = `<div class="step__num mono">${String(idx + 1).padStart(2, '0')}</div><div><div class="step__title">${s.title || ''}</div><div class="step__text">${s.text || ''}</div></div>`;
+        row.setAttribute('data-reveal', '');
+        procRoot.appendChild(row);
+      });
+      procRoot.closest('.case-section')?.classList.toggle('is-empty', steps.length === 0);
+    }
+
+    const delRoot = qs('[data-project-deliverables]');
+    if (delRoot) {
+      delRoot.innerHTML = '';
+      const dels = Array.isArray(p.deliverables) ? p.deliverables : [];
+      dels.forEach((d) => {
+        const chip = document.createElement('div');
+        chip.className = 'deliverable mono';
+        chip.textContent = d || '';
+        chip.setAttribute('data-reveal', '');
+        delRoot.appendChild(chip);
+      });
+      delRoot.closest('.case-section')?.classList.toggle('is-empty', dels.length === 0);
+    }
 
     const teamRoot = qs('[data-project-team]');
     if (teamRoot) {
