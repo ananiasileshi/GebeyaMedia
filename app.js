@@ -242,27 +242,13 @@
 
   function initTheme() {
     const root = document.documentElement;
-    const stored = window.localStorage.getItem('gm-theme');
-    const initial = stored || (prefersLight ? 'light' : 'dark');
-
-    const apply = (t) => {
-      if (t === 'light') root.setAttribute('data-theme', 'light');
-      else root.removeAttribute('data-theme');
-      window.localStorage.setItem('gm-theme', t);
-      qsa('[data-theme-toggle]').forEach((btn) => {
-        btn.textContent = t === 'light' ? '☀' : '☾';
-        btn.setAttribute('aria-label', t === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
-      });
-    };
-
-    apply(initial);
+    root.setAttribute('data-theme', 'light');
+    try { window.localStorage.removeItem('gm-theme'); } catch { }
 
     qsa('[data-theme-toggle]').forEach((btn) => {
-      btn.disabled = false;
-      btn.addEventListener('click', () => {
-        const cur = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-        apply(cur === 'light' ? 'dark' : 'light');
-      });
+      btn.disabled = true;
+      btn.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('tabindex', '-1');
     });
   }
 
