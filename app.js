@@ -820,18 +820,15 @@
     const header = qs('[data-header]');
     if (!header) return;
 
-    let lastY = window.scrollY;
     let ticking = false;
 
     const onScroll = () => {
       const y = window.scrollY;
-      header.classList.toggle('is-solid', y > 100);
+      header.classList.toggle('is-top', y <= 2);
+      header.classList.toggle('is-glass', y > 2);
+      header.classList.toggle('is-solid', y > 80);
 
-      const dy = y - lastY;
-      if (y > 140 && dy > 6) header.classList.add('is-hidden');
-      if (dy < -6) header.classList.remove('is-hidden');
-
-      lastY = y;
+      header.classList.remove('is-hidden');
       ticking = false;
     };
 
