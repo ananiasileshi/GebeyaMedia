@@ -252,9 +252,9 @@ html[data-theme="light"] .header .brand,
 html[data-theme="light"] .overlay__top .brand{
   padding: 8px 10px;
   border-radius: var(--radius-full);
-  background: rgba(255,255,255,.78);
-  border: 1px solid rgba(0,0,0,.08);
-  backdrop-filter: blur(10px);
+  background: transparent;
+  border: 0;
+  backdrop-filter: none;
 }
 
 html[data-theme="light"] .brand__img{
