@@ -1671,6 +1671,13 @@ html[data-theme="light"] .gallery-item{
   display:block;
 }
 
+.gallery-item video{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+}
+
 .gallery-item--ph{
   min-height: 220px;
 }

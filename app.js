@@ -37,7 +37,7 @@
         { label: 'Turnaround', value: '15 days' },
         { label: 'Platforms', value: 'IG / TikTok / YouTube' }
       ],
-      previewVideo: '',
+      previewVideo: 'videoplayback-1.mp4',
       previewPoster: '',
       quote: {
         text: 'A premium campaign is a production system: one promise, one rhythm, and a cutdown plan baked in from day one.',
@@ -50,7 +50,7 @@
         { title: 'Post', text: 'Edit to the promise, then craft modular cutdowns that keep the arc intact.' }
       ],
       deliverables: ['Hero film', '6 cutdowns', 'Endcards', 'Social exports'],
-      gallery: []
+      gallery: ['videoplayback-1.mp4']
     },
     {
       slug: 'project-two',
@@ -729,12 +729,27 @@
           ph.setAttribute('data-ph', String(idx + 1));
           item.appendChild(ph);
         } else {
-          const img = document.createElement('img');
-          img.src = src;
-          img.alt = '';
-          img.loading = 'lazy';
-          img.decoding = 'async';
-          item.appendChild(img);
+          const s = String(src || '');
+          const isVid = /\.(mp4|webm|mov)(\?.*)?$/i.test(s);
+
+          if (isVid) {
+            const v = document.createElement('video');
+            v.src = s;
+            v.muted = true;
+            v.loop = true;
+            v.playsInline = true;
+            v.autoplay = !prefersReducedMotion;
+            v.preload = 'metadata';
+            v.setAttribute('aria-label', 'Gallery video');
+            item.appendChild(v);
+          } else {
+            const img = document.createElement('img');
+            img.src = s;
+            img.alt = '';
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            item.appendChild(img);
+          }
         }
 
         item.setAttribute('data-reveal', '');
